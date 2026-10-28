@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colegio Montano - Interactive Whiteboard: Our World 1 Unit 2</title>
+    <!-- Tailwind CSS for modern layout and styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        montanoBlue: '#1269A8',
+                        montanoYellow: '#F7D615',
+                        montanoGreen: '#54887D',
+                        montanoLightBlue: '#88B5C7',
+                        montanoOlive: '#A6B046',
+                        montanoBg: '#F2F5E9'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #E8ECE1;
+        }
+        /* Custom scrollbar for immersive whiteboard feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F2F5E9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #88B5C7;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen p-2 md:p-6 flex flex-col items-center justify-center">
+
+    <!-- MAIN WHITEBOARD FRAME -->
+    <div id="whiteboardContainer" class="w-full max-w-6xl bg-montanoBg rounded-2xl shadow-2xl border-4 border-montanoYellow flex flex-col overflow-hidden transition-all duration-300">
+        
+        <!-- WHITEBOARD HEADER -->
+        <header class="bg-montanoBlue text-white px-6 py-4 flex flex-col sm:flex-row items-center justify-between border-b-4 border-montanoYellow gap-4">
+            <div class="flex items-center space-x-4">
+                <!-- Institutional Logo -->
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyEop0yf6lZ7Jk9MILZxF1rBj4Oqs5esyhIQ&s" alt="Colegio Montano Logo" class="h-14 w-14 object-contain rounded-full bg-white p-1 shadow-md border-2 border-montanoYellow">
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold tracking-wide">COLEGIO MONTANO</h1>
+                    <p class="text-montanoYellow text-xs md:text-sm font-semibold">Our World 1 • Unit 2 • 1st Grade Primary</p>
+                </div>
+            </div>
+
+            <!-- Fullscreen Toggle Button -->
+            <button onclick="toggleFullScreen()" class="bg-montanoYellow text-montanoBlue font-bold px-4 py-2 rounded-lg shadow-md hover:bg-yellow-300 transition flex items-center space-x-2 text-sm">
+                <span>[ ⛶ Fullscreen ]</span>
+            </button>
+        </header>
+
+        <!-- NAVIGATION TABS -->
+        <nav class="bg-montanoGreen px-4 py-3 flex flex-wrap justify-center gap-2 border-b-2 border-montanoOlive">
+            <button onclick="switchTab('theory')" id="btn-theory" class="tab-btn px-4 py-2 rounded-lg font-bold text-sm bg-montanoYellow text-montanoBlue shadow transition">📚 Theory</button>
+            <button onclick="switchTab('examples')" id="btn-examples" class="tab-btn px-4 py-2 rounded-lg font-bold text-sm bg-montanoLightBlue text-montanoBlue hover:bg-white shadow transition">💡 Examples</button>
+            <button onclick="switchTab('exercises')" id="btn-exercises" class="tab-btn px-4 py-2 rounded-lg font-bold text-sm bg-montanoLightBlue text-montanoBlue hover:bg-white shadow transition">✍️ Exercises</button>
+            <button onclick="switchTab('reflection')" id="btn-reflection" class="tab-btn px-4 py-2 rounded-lg font-bold text-sm bg-montanoLightBlue text-montanoBlue hover:bg-white shadow transition">🤔 Critical Reflection</button>
+            <button onclick="switchTab('evaluation')" id="btn-evaluation" class="tab-btn px-4 py-2 rounded-lg font-bold text-sm bg-montanoLightBlue text-montanoBlue hover:bg-white shadow transition">📝 Evaluation</button>
+        </nav>
+
+        <!-- WHITEBOARD CANVAS CONTENT AREA -->
+        <main class="p-4 md:p-8 flex-grow overflow-y-auto max-h-[70vh]">
+
+            <!-- ================= SECTION 1: THEORY ================= -->
+            <section id="tab-theory" class="tab-content space-y-6">
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-8 border-montanoBlue">
+                    <h2 class="text-2xl font-bold text-montanoBlue mb-3">Grammar I: Yes / No questions with "Is there...?"</h2>
+                    <p class="text-gray-700 text-base mb-4">We use <code class="bg-montanoBg px-2 py-1 rounded text-montanoBlue font-bold">Is there... ?</code> to ask if a single object exists in a specific room or place in our home.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div class="bg-montanoLightBlue/30 p-4 rounded-lg border border-montanoLightBlue">
+                            <h3 class="font-bold text-montanoBlue mb-2">Asking Questions</h3>
+                            <p class="text-sm text-gray-800"><strong>Is there</strong> a lamp in the bedroom?</p>
+                            <p class="text-sm text-gray-800"><strong>Is there</strong> a TV in the kitchen?</p>
+                        </div>
+                        <div class="bg-montanoOlive/20 p-4 rounded-lg border border-montanoOlive">
+                            <h3 class="font-bold text-montanoGreen mb-2">Short Answers</h3>
+                            <p class="text-sm text-gray-800">Yes, <strong>there is.</strong></p>
+                            <p class="text-sm text-gray-800">No, <strong>there isn't.</strong> <span class="text-xs bg-white px-1 rounded">(isn't = is not)</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-8 border-montanoGreen mt-6">
+                    <h2 class="text-2xl font-bold text-montanoGreen mb-3">Grammar II: Present Progressive (He / She is + verb-ing)</h2>
+                    <p class="text-gray-700 text-base mb-4">We use the Present Progressive to describe actions that are happening right now in our home.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div class="bg-montanoLightBlue/30 p-4 rounded-lg border border-montanoLightBlue">
+                            <h3 class="font-bold text-montanoBlue mb-2">Location & Actions</h3>
+                            <p class="text-sm text-gray-800"><strong>Where is</strong> your sister? — She's <strong>in the kitchen</strong>.</p>
+                            <p class="text-sm text-gray-800"><strong>What's</strong> she <strong>doing</strong>? — She's <strong>eating</strong>.</p>
+                        </div>
+                        <div class="bg-montanoOlive/20 p-4 rounded-lg border border-montanoOlive">
+                            <h3 class="font-bold text-montanoGreen mb-2">Key Contractions</h3>
+                            <p class="text-sm text-gray-800"><strong>What's</strong> = What is</p>
+                            <p class="text-sm text-gray-800"><strong>She's</strong> = She is / <strong>He's</strong> = He is</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SECTION 2: EXAMPLES (15 Total: 5 Basic, 5 Intermediate, 5 Advanced) ================= -->
+            <section id="tab-examples" class="tab-content hidden space-y-6">
+                <div class="border-b-2 border-montanoBlue pb-2">
+                    <h2 class="text-2xl font-bold text-montanoBlue">Resolved Examples (15 Total)</h2>
+                    <p class="text-sm text-gray-600">Explore basic, intermediate, and advanced examples based on Our World 1, Unit 2.</p>
+                </div>
+
+                <!-- BASIC LEVEL EXAMPLES -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-montanoGreen bg-montanoOlive/20 px-3 py-1 rounded inline-block">Basic Level Examples</h3>
+                    
+                    <div class="bg-montanoLightBlue/20 p-4 rounded-xl border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Example 1: Identifying a Lamp</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Question:</strong> Is there a lamp in the bedroom?</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Resolution:</strong> Look at the bedroom image in the textbook. Yes, there is a lamp on the nightstand. Answer: <span class="font-bold text-montanoGreen">Yes, there is.</span></p>
+                    </div>
+
+                    <div class="bg-montanoLightBlue/20 p-4 rounded-xl border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Example 2: Identifying a TV in the kitchen</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Question:</strong> Is there a TV in the kitchen?</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Resolution:</strong> Look at the kitchen appliances. There is a stove and fridge, but no television. Answer: <span class="font-bold text-montanoGreen">No, there isn't.</span></p>
+                    </div>
+
+                    <div class="bg-montanoLightBlue/20 p-4 rounded-xl border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Example 3: Sister sleeping</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Question:</strong> Where is the baby? What is she doing?</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Resolution:</strong> The baby is in the crib inside the bedroom and resting. Answer: <span class="font-bold text-montanoGreen">She's in the bedroom. She's sleeping.</span></p>
+                    </div>
+
+                    <div class="bg-montanoLightBlue/20 p-4 rounded-xl border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Example 4: Brother in the bathroom</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Question:</strong> Where is the brother? What is he doing?</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Resolution:</strong> The boy is inside the bathtub filled with water. Answer: <span class="font-bold text-montanoGreen">He's in the bathroom. He's taking a bath.</span></p>
+                    </div>
+
+                    <div class="bg-montanoLightBlue/20 p-4 rounded-xl border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Example 5: Grandmother cooking</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Question:</strong> Where is the grandmother? What is she doing?</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Resolution:</strong> She stands by the stove stirring a pot. Answer: <span class="font-bold text-montanoGreen">She's in the kitchen. She's cooking.</span></p>
+                    </div>
+                </div>
+
+                <!-- INTERMEDIATE LEVEL EXAMPLES -->
+                <div class="space-y-4 pt-4">
+                    <h3 class="text-lg font-bold text-montanoGreen bg-montanoOlive/20 px-3 py-1 rounded inline-block">Intermediate Level Examples</h3>
+                    
+                    <div class="bg-montanoLightBlue/20 p-4 rounded-xl border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Example 6: Constructing a question for a bed</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Prompt:</strong> Complete the question: "___ a bed in the kitchen?"</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Resolution:</strong> Beds belong in bedrooms, not kitchens. Structure requires "Is there". Answer: <span class="font-bold text-montanoGreen">Is there a bed in the kitchen? No, there isn't.</span></p>
+                    </div>
+
+                    <div class="bg-montanoLightBlue/20 p-4 rounded-xl border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Example 7: Father cleaning the living room</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Question:</strong> Where is the father? What is he doing?</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Resolution:</strong> He is holding a vacuum cleaner in the living room. Answer: <span class="font-bold text-montanoGreen">He's in the living room. He's cleaning.</span></p>
+                    </div>
+
+                    <div class="bg-montanoLightBlue/20 p-4 rounded-xl border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Example 8: Analyzing living room items</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Question:</strong> Is there a TV in the living room?</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Resolution:</strong> Check the living room layout in Our World 1 page 45. A television is mounted on the wall. Answer: <span class="font-bold text-montanoGreen">Is there a TV in the living room? Yes, there is.</span></p>
+                    </div>
+
+                    <div class="bg-montanoLightBlue/20 p-4 rounded-xl border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Example 9: Matching action to room</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Prompt:</strong> She's watching TV. Where is she?</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Resolution:</strong> Televisions are typically located in the living room. Answer: <span class="font-bold text-montanoGreen">She's in the living room. She's watching TV.</span></p>
+                    </div>
+
+                    <div class="bg-montanoLightBlue/20 p-4 rounded-xl border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Example 10: Bathrobe and bathroom check</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Question:</strong> Is there a towel in the bathroom?</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Resolution:</strong> Examine the bathroom illustration on page 45. A towel hangs near the sink. Answer: <span class="font-bold text-montanoGreen">Yes, there is.</span></p>
+                    </div>
+                </div>
+
+                <!-- ADVANCED LEVEL EXAMPLES -->
+                <div class="space-y-4 pt-4">
+                    <h3 class="text-lg font-bold text-montanoGreen bg-montanoOlive/20 px-3 py-1 rounded inline-block">Advanced Level Examples</h3>
+                    
+                    <div class="bg-montanoLightBlue/20 p-4 rounded-xl border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Example 11: Multi-room drawing description</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Prompt:</strong> Draw a living room and write two sentences about it.</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Resolution:</strong> Combine room identification with object existence. Answer: <span class="font-bold text-montanoGreen">It's a living room. Is there a sofa in your picture? Yes, there is.</span></p>
+                    </div>
+
+                    <div class="bg-montanoLightBlue/20 p-4 rounded-xl border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Example 12: Complex compound home query</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Prompt:</strong> Formulate a negative existence check for a lamp in the bathroom and explain.</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Resolution:</strong> Combine grammar rules: "Is there a lamp in the bathroom? No, there isn't. Lamps are in bedrooms or living rooms." Answer: <span class="font-bold text-montanoGreen">Is there a lamp in the bathroom? No, there isn't.</span></p>
+                    </div>
+
+                    <div class="bg-montanoLightBlue/20 p-4 rounded-xl border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Example 13: Multi-person action coordination</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Prompt:</strong> Father is cleaning and grandmother is cooking. Where are they?</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Resolution:</strong> Map each person to their respective household zone. Answer: <span class="font-bold text-montanoGreen">Father is in the living room cleaning. Grandmother is in the kitchen cooking.</span></p>
+                    </div>
+
+                    <div class="bg-montanoLightBlue/20 p-4 rounded-xl border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Example 14: Personalizing picture descriptions</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Prompt:</strong> What is your picture about and is there a table?</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Resolution:</strong> Answer custom room creation questions in 1st grade context. Answer: <span class="font-bold text-montanoGreen">It's a dining room. Is there a table in your picture? Yes, there is.</span></p>
+                    </div>
+
+                    <div class="bg-montanoLightBlue/20 p-4 rounded-xl border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Example 15: Full continuous tense dialogue construction</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Prompt:</strong> Construct a question and answer for a grandmother in the kitchen using present progressive.</p>
+                        <p class="text-sm text-gray-700 mt-1"><strong>Resolution:</strong> Combine location question and action question. Answer: <span class="font-bold text-montanoBlue">Where's the grandmother? She's in the kitchen. What's she doing? She's cooking.</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SECTION 3: EXERCISES (15 Total with Hidden Solutions) ================= -->
+            <section id="tab-exercises" class="tab-content hidden space-y-6">
+                <div class="border-b-2 border-montanoBlue pb-2">
+                    <h2 class="text-2xl font-bold text-montanoBlue">Practical Exercises (15 Total)</h2>
+                    <p class="text-sm text-gray-600">Practice your grammar skills. Click "Show Solution" to verify your answers!</p>
+                </div>
+
+                <!-- BASIC EXERCISES (1 to 5) -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-montanoGreen bg-montanoOlive/20 px-3 py-1 rounded inline-block">Basic Exercises</h3>
+
+                    <!-- Exercise 1 -->
+                    <div class="bg-white p-4 rounded-xl shadow border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Exercise 1: Is there a bed in the kitchen?</p>
+                        <p class="text-sm text-gray-700 mt-1">Look at the house and choose: <em>Yes, there is. / No, there isn't.</em></p>
+                        <button onclick="toggleSolution('sol-ex1')" class="mt-3 bg-montanoBlue text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-blue-700 transition">Show Solution</button>
+                        <div id="sol-ex1" class="hidden mt-3 p-3 bg-montanoBg rounded border border-montanoOlive text-sm text-gray-800">
+                            <strong>Solution:</strong> No, there isn't. (Beds belong in the bedroom).
+                        </div>
+                    </div>
+
+                    <!-- Exercise 2 -->
+                    <div class="bg-white p-4 rounded-xl shadow border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Exercise 2: Complete the question: "___ a lamp in the bathroom?"</p>
+                        <p class="text-sm text-gray-700 mt-1">Fill in the blank with the correct auxiliary verb phrase.</p>
+                        <button onclick="toggleSolution('sol-ex2')" class="mt-3 bg-montanoBlue text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-blue-700 transition">Show Solution</button>
+                        <div id="sol-ex2" class="hidden mt-3 p-3 bg-montanoBg rounded border border-montanoOlive text-sm text-gray-800">
+                            <strong>Solution:</strong> Is there (Is there a lamp in the bathroom?)
+                        </div>
+                    </div>
+
+                    <!-- Exercise 3 -->
+                    <div class="bg-white p-4 rounded-xl shadow border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Exercise 3: Where is the baby? (in the bedroom / in the kitchen)</p>
+                        <p class="text-sm text-gray-700 mt-1">Select the correct room where the baby sleeps in a crib.</p>
+                        <button onclick="toggleSolution('sol-ex3')" class="mt-3 bg-montanoBlue text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-blue-700 transition">Show Solution</button>
+                        <div id="sol-ex3" class="hidden mt-3 p-3 bg-montanoBg rounded border border-montanoOlive text-sm text-gray-800">
+                            <strong>Solution:</strong> She's in the bedroom.
+                        </div>
+                    </div>
+
+                    <!-- Exercise 4 -->
+                    <div class="bg-white p-4 rounded-xl shadow border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Exercise 4: What is the baby doing? (sleeping / cooking)</p>
+                        <p class="text-sm text-gray-700 mt-1">Choose the correct action verb.</p>
+                        <button onclick="toggleSolution('sol-ex4')" class="mt-3 bg-montanoBlue text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-blue-700 transition">Show Solution</button>
+                        <div id="sol-ex4" class="hidden mt-3 p-3 bg-montanoBg rounded border border-montanoOlive text-sm text-gray-800">
+                            <strong>Solution:</strong> She's sleeping.
+                        </div>
+                    </div>
+
+                    <!-- Exercise 5 -->
+                    <div class="bg-white p-4 rounded-xl shadow border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Exercise 5: Is there a TV in the living room?</p>
+                        <p class="text-sm text-gray-700 mt-1">Answer based on page 45: <em>Yes, there is. / No, there isn't.</em></p>
+                        <button onclick="toggleSolution('sol-ex5')" class="mt-3 bg-montanoBlue text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-blue-700 transition">Show Solution</button>
+                        <div id="sol-ex5" class="hidden mt-3 p-3 bg-montanoBg rounded border border-montanoOlive text-sm text-gray-800">
+                            <strong>Solution:</strong> Yes, there is.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INTERMEDIATE EXERCISES (6 to 10) -->
+                <div class="space-y-4 pt-4">
+                    <h3 class="text-lg font-bold text-montanoGreen bg-montanoOlive/20 px-3 py-1 rounded inline-block">Intermediate Exercises</h3>
+
+                    <!-- Exercise 6 -->
+                    <div class="bg-white p-4 rounded-xl shadow border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Exercise 6: Complete: "Where's the brother? He's in the ________. He's taking a bath."</p>
+                        <p class="text-sm text-gray-700 mt-1>Provide the correct room name.</p>
+                        <button onclick="toggleSolution('sol-ex6')" class="mt-3 bg-montanoBlue text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-blue-700 transition">Show Solution</button>
+                        <div id="sol-ex6" class="hidden mt-3 p-3 bg-montanoBg rounded border border-montanoOlive text-sm text-gray-800">
+                            <strong>Solution:</strong> bathroom (He's in the bathroom.)
+                        </div>
+                    </div>
+
+                    <!-- Exercise 7 -->
+                    <div class="bg-white p-4 rounded-xl shadow border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Exercise 7: Complete the sentence: "She's in the kitchen. She's ________." (cooking / sleeping)</p>
+                        <p class="text-sm text-gray-700 mt-1">Select the correct verb for grandmother.</p>
+                        <button onclick="toggleSolution('sol-ex7')" class="mt-3 bg-montanoBlue text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-blue-700 transition">Show Solution</button>
+                        <div id="sol-ex7" class="hidden mt-3 p-3 bg-montanoBg rounded border border-montanoOlive text-sm text-gray-800">
+                            <strong>Solution:</strong> cooking (She's cooking.)
+                        </div>
+                    </div>
+
+                    <!-- Exercise 8 -->
+                    <div class="bg-white p-4 rounded-xl shadow border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Exercise 8: Formulate the question for: "___ a lamp in the living room?"</p>
+                        <p class="text-sm text-gray-700 mt-1">Write the complete question starting with Is there.</p>
+                        <button onclick="toggleSolution('sol-ex8')" class="mt-3 bg-montanoBlue text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-blue-700 transition">Show Solution</button>
+                        <div id="sol-ex8" class="hidden mt-3 p-3 bg-montanoBg rounded border border-montanoOlive text-sm text-gray-800">
+                            <strong>Solution:</strong> Is there a lamp in the living room?
+                        </div>
+                    </div>
+
+                    <!-- Exercise 9 -->
+                    <div class="bg-white p-4 rounded-xl shadow border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Exercise 9: Fill in the blank: "Where's the father? He's in the living room. He's ________."</p>
+                        <p class="text-sm text-gray-700 mt-1">Based on page 48 photo (vacuuming).</p>
+                        <button onclick="toggleSolution('sol-ex9')" class="mt-3 bg-montanoBlue text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-blue-700 transition">Show Solution</button>
+                        <div id="sol-ex9" class="hidden mt-3 p-3 bg-montanoBg rounded border border-montanoOlive text-sm text-gray-800">
+                            <strong>Solution:</strong> cleaning (He's cleaning.)
+                        </div>
+                    </div>
+
+                    <!-- Exercise 10 -->
+                    <div class="bg-white p-4 rounded-xl shadow border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Exercise 10: Unscramble: "is / there / a / kitchen / in / bed / the / ?"</p>
+                        <p class="text-sm text-gray-700 mt-1">Put the words in correct order.</p>
+                        <button onclick="toggleSolution('sol-ex10')" class="mt-3 bg-montanoBlue text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-blue-700 transition">Show Solution</button>
+                        <div id="sol-ex10" class="hidden mt-3 p-3 bg-montanoBg rounded border border-montanoOlive text-sm text-gray-800">
+                            <strong>Solution:</strong> Is there a bed in the kitchen?
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ADVANCED EXERCISES (11 to 15) -->
+                <div class="space-y-4 pt-4">
+                    <h3 class="text-lg font-bold text-montanoGreen bg-montanoOlive/20 px-3 py-1 rounded inline-block">Advanced Exercises</h3>
+
+                    <!-- Exercise 11 -->
+                    <div class="bg-white p-4 rounded-xl shadow border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Exercise 11: Write about your picture (Page 46): "What is your picture? It's a ________."</p>
+                        <p class="text-sm text-gray-700 mt-1">Choose one room: bedroom, dining room, kitchen, or living room.</p>
+                        <button onclick="toggleSolution('sol-ex11')" class="mt-3 bg-montanoBlue text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-blue-700 transition">Show Solution</button>
+                        <div id="sol-ex11" class="hidden mt-3 p-3 bg-montanoBg rounded border border-montanoOlive text-sm text-gray-800">
+                            <strong>Solution:</strong> It's a living room. (Or any valid room from the list).
+                        </div>
+                    </div>
+
+                    <!-- Exercise 12 -->
+                    <div class="bg-white p-4 rounded-xl shadow border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Exercise 12: Answer about your picture: "Is there a sofa in your picture?"</p>
+                        <p class="text-sm text-gray-700 mt-1">Provide a complete affirmative or negative short answer.</p>
+                        <button onclick="toggleSolution('sol-ex12')" class="mt-3 bg-montanoBlue text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-blue-700 transition">Show Solution</button>
+                        <div id="sol-ex12" class="hidden mt-3 p-3 bg-montanoBg rounded border border-montanoOlive text-sm text-gray-800">
+                            <strong>Solution:</strong> Yes, there is. (Or No, there isn't, depending on your drawing).
+                        </div>
+                    </div>
+
+                    <!-- Exercise 13 -->
+                    <div class="bg-white p-4 rounded-xl shadow border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Exercise 13: Write a two-part sentence for a grandmother in the kitchen making food.</p>
+                        <p class="text-sm text-gray-700 mt-1">Use location + present progressive action.</p>
+                        <button onclick="toggleSolution('sol-ex13')" class="mt-3 bg-montanoBlue text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-blue-700 transition">Show Solution</button>
+                        <div id="sol-ex13" class="hidden mt-3 p-3 bg-montanoBg rounded border border-montanoOlive text-sm text-gray-800">
+                            <strong>Solution:</strong> She's in the kitchen. She's cooking.
+                        </div>
+                    </div>
+
+                    <!-- Exercise 14 -->
+                    <div class="bg-white p-4 rounded-xl shadow border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Exercise 14: Correct the mistake: "Where is the baby? He's in the bedroom. He's sleeping."</p>
+                        <p class="text-sm text-gray-700 mt-1">Check pronoun agreement for a baby girl.</p>
+                        <button onclick="toggleSolution('sol-ex14')" class="mt-3 bg-montanoBlue text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-blue-700 transition">Show Solution</button>
+                        <div id="sol-ex14" class="hidden mt-3 p-3 bg-montanoBg rounded border border-montanoOlive text-sm text-gray-800">
+                            <strong>Solution:</strong> She's in the bedroom. She's sleeping. (Since the baby in Our World 1 is female).
+                        </div>
+                    </div>
+
+                    <!-- Exercise 15 -->
+                    <div class="bg-white p-4 rounded-xl shadow border border-montanoLightBlue">
+                        <p class="font-bold text-montanoBlue">Exercise 15: Create a full question and answer pair about a lamp in the living room.</p>
+                        <p class="text-sm text-gray-700 mt-1">Combine "Is there...?" with an affirmative response.</p>
+                        <button onclick="toggleSolution('sol-ex15')" class="mt-3 bg-montanoBlue text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-blue-700 transition">Show Solution</button>
+                        <div id="sol-ex15" class="hidden mt-3 p-3 bg-montanoBg rounded border border-montanoOlive text-sm text-gray-800">
+                            <strong>Solution:</strong> Is there a lamp in the living room? Yes, there is.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SECTION 4: CRITICAL REFLECTION ================= -->
+            <section id="tab-reflection" class="tab-content hidden space-y-6">
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-8 border-montanoYellow">
+                    <h2 class="text-2xl font-bold text-montanoBlue mb-4">🤔 Critical Thinking & Conceptual Reflection</h2>
+                    <p class="text-gray-700 mb-4">Discuss these questions with your teacher or classmates to deepen your understanding of English grammar and home spaces:</p>
+
+                    <div class="space-y-4">
+                        <div class="bg-montanoBg p-4 rounded-lg border border-montanoOlive">
+                            <h3 class="font-bold text-montanoGreen">Question 1: Why can't we put a bed in the kitchen?</h3>
+                            <p class="text-sm text-gray-700 mt-1">Think about the function of different rooms in our house. How do furniture items match the purpose of a room?</p>
+                        </div>
+
+                        <div class="bg-montanoBg p-4 rounded-lg border border-montanoOlive">
+                            <h3 class="font-bold text-montanoGreen">Question 2: What is the difference between "Is there a lamp?" and "Where is the lamp?"</h3>
+                            <p class="text-sm text-gray-700 mt-1">Compare asking if something exists versus asking for its exact location in the house.</p>
+                        </div>
+
+                        <div class="bg-montanoBg p-4 rounded-lg border border-montanoOlive">
+                            <h3 class="font-bold text-montanoGreen">Question 3: How does adding "-ing" change action words like "cook" to "cooking"?</h3>
+                            <p class="text-sm text-gray-700 mt-1">Reflect on how we describe actions happening right now at this very moment.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SECTION 5: EVALUATION WITH HIDDEN SOLUTIONS ================= -->
+            <section id="tab-evaluation" class="tab-content hidden space-y-6">
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-8 border-montanoBlue">
+                    <h2 class="text-2xl font-bold text-montanoBlue mb-2">📝 Formative Evaluation</h2>
+                    <p class="text-sm text-gray-600 mb-6">Test your mastery of Unit 2 grammar rules. Click the button under each question to check your score answer.</p>
+
+                    <div class="space-y-6">
+                        <!-- Eval 1 -->
+                        <div class="p-4 bg-montanoLightBlue/10 rounded-xl border border-montanoLightBlue">
+                            <p class="font-bold text-gray-800">1. Complete: "Is there a TV in the kitchen? No, there ________."</p>
+                            <div class="mt-2 space-y-1 text-sm text-gray-700">
+                                <label class="block"><input type="radio" name="eval1" class="mr-2"> a) is</label>
+                                <label class="block"><input type="radio" name="eval1" class="mr-2"> b) isn't</label>
+                                <label class="block"><input type="radio" name="eval1" class="mr-2"> c) are</label>
+                            </div>
+                            <button onclick="toggleSolution('sol-eval1')" class="mt-3 bg-montanoBlue text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-blue-700 transition">Show Solution</button>
+                            <div id="sol-eval1" class="hidden mt-3 p-3 bg-white rounded border border-montanoOlive text-sm text-gray-800">
+                                <strong>Answer:</strong> b) isn't (No, there isn't.)
+                            </div>
+                        </div>
+
+                        <!-- Eval 2 -->
+                        <div class="p-4 bg-montanoLightBlue/10 rounded-xl border border-montanoLightBlue">
+                            <p class="font-bold text-gray-800">2. Complete: "Where's the grandmother? She's ________ kitchen."</p>
+                            <div class="mt-2 space-y-1 text-sm text-gray-700">
+                                <label class="block"><input type="radio" name="eval2" class="mr-2"> a) on the</label>
+                                <label class="block"><input type="radio" name="eval2" class="mr-2"> b) in the</label>
+                                <label class="block"><input type="radio" name="eval2" class="mr-2"> c) at</label>
+                            </div>
+                            <button onclick="toggleSolution('sol-eval2')" class="mt-3 bg-montanoBlue text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-blue-700 transition">Show Solution</button>
+                            <div id="sol-eval2" class="hidden mt-3 p-3 bg-white rounded border border-montanoOlive text-sm text-gray-800">
+                                <strong>Answer:</strong> b) in the (She's in the kitchen.)
+                            </div>
+                        </div>
+
+                        <!-- Eval 3 -->
+                        <div class="p-4 bg-montanoLightBlue/10 rounded-xl border border-montanoLightBlue">
+                            <p class="font-bold text-gray-800">3. What is the correct contraction for "She is"?</p>
+                            <div class="mt-2 space-y-1 text-sm text-gray-700">
+                                <label class="block"><input type="radio" name="eval3" class="mr-2"> a) She's</label>
+                                <label class="block"><input type="radio" name="eval3" class="mr-2"> b) Shes</label>
+                                <label class="block"><input type="radio" name="eval3" class="mr-2"> c) He's</label>
+                            </div>
+                            <button onclick="toggleSolution('sol-eval3')" class="mt-3 bg-montanoBlue text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-blue-700 transition">Show Solution</button>
+                            <div id="sol-eval3" class="hidden mt-3 p-3 bg-white rounded border border-montanoOlive text-sm text-gray-800">
+                                <strong>Answer:</strong> a) She's
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- WHITEBOARD FOOTER -->
+        <footer class="bg-montanoGreen text-white px-6 py-3 text-center text-xs md:text-sm font-semibold border-t-2 border-montanoYellow flex flex-col sm:flex-row justify-between items-center gap-2">
+            <p>© 2026 Colegio Montano • Educational Interactive Whiteboard</p>
+            <p>Our World 1 (National Geographic) • Unit 2 Grammar Guide</p>
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Tab Switching Function
+        function switchTab(tabId) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.add('hidden'));
+
+            // Remove active styles from all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-montanoYellow', 'text-montanoBlue');
+                btn.classList.add('bg-montanoLightBlue', 'text-montanoBlue');
+            });
+
+            // Show selected tab content
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+
+            // Highlight active button
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.remove('bg-montanoLightBlue');
+            activeBtn.classList.add('bg-montanoYellow');
+        }
+
+        // Toggle Solution Visibility Function
+        function toggleSolution(solId) {
+            const solElement = document.getElementById(solId);
+            if (solElement.classList.contains('hidden')) {
+                solElement.classList.remove('hidden');
+            } else {
+                solElement.classList.add('hidden');
+            }
+        }
+
+        // Fullscreen API Toggle Function
+        function toggleFullScreen() {
+            const elem = document.getElementById('whiteboardContainer');
+            if (!document.fullscreenElement) {
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.webkitRequestFullscreen) { /* Safari */
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) { /* IE11 */
+                    elem.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) { /* Safari */
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { /* IE11 */
+                    document.msExitFullscreen();
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
